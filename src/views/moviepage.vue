@@ -20,7 +20,7 @@
           </div>
           <div class="movie-overview">{{ thisMovie.overview }}</div>
           <div class="movie-photo">
-            <button @click="toggler = !toggler">video&photos</button>
+            <button @click="toggler = !toggler">trailers</button>
             <FsLightbox
             :toggler="toggler"
             :sources="[
