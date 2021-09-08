@@ -280,20 +280,25 @@ input, select{
     display: flex;
     padding: 30px;
     border-radius: 30%;
-    .ans-poster{
-      img{
-        
-      }
+    @include phone{
+      display: inline;
+      margin-top: 0px;
     }
     .ans-content{
       padding: 30px 0px 0px 20px;
       .ans-title{
         text-align: left;
         font-size: 30px;
+        @include phone{
+          text-align: center;
+        }
       }
       .ans-release{
         font-family: Sanchez;
         text-align: left;
+        @include phone{
+          text-align: center;
+        }
       }
       .ans-overview{
         font-family: Sanchez;
@@ -358,9 +363,6 @@ input, select{
               width: 100%;
               object-fit: cover;
               display: block;
-              & :hover{
-                
-              }
             }
           }
           .news-title{
@@ -557,12 +559,6 @@ input, select{
     .search-wrapper{
       display: inline-block;
       margin: 20px;
-      .search-poster{
-
-      }
-      .search-title{
-
-      }
     }
   }
   .search-no{
