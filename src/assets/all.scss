@@ -147,8 +147,12 @@ input, select{
     .slick-bg{
       background-size: cover;
       background-repeat: no-repeat;
+      background-position: top center;
       height: 100vh;
       padding: 40% 5% 0% 5%;
+      @include phone{
+        background-size: 800px;
+      }
     }
     .slick-content{
       color: whitesmoke;
@@ -190,6 +194,9 @@ input, select{
         display: flex;
         margin-bottom: 30px;
         margin-left: 30px;
+        @include phone{
+          margin-left: 20px;
+        }
         .top-rated-index{
           font-size: 40px;
           align-self: center;
@@ -200,6 +207,9 @@ input, select{
           img{
             width: 150px;
             border-radius: 20px;
+            @include phone{
+              width: 100px;
+            }
           }
           @include pad{
             align-self: center;
@@ -208,6 +218,9 @@ input, select{
         .top-rated-right{
           padding: 10px 60px 0px 30px;
           text-align: left;
+          @include phone{
+            padding-right: 20px;
+          }
           .rated-title{
             font-size: 25px;
             .rated-date{

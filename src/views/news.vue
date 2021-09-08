@@ -2,7 +2,7 @@
   <div id="news">
     <h1>entertainment news</h1>
     <div class="search-container">
-      <input type="text" class="search-input" placeholder="search news" @keydown.enter="getSearchNews">
+      <input type="text" class="search-input" placeholder="search news" @keyup.enter="getSearchNews">
       <input type="button" value="submit" class="search-btn" @click="getSearchNews">
     </div>
     <div class="news-container">
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     getNews () {
-      const NEWS_API = 'https://newsapi.org/v2/everything?domains=screenrant.com,movieweb.com,empireonline.com,collider.com,cbr.com,digitalspy.com,comingsoon.net&from=2021-08-20&to=2021-10-10&sortBy=popularity&pageSize=100&apiKey=ab833e5b7de944ce9d01294060cf9eee'
+      const NEWS_API = 'https://newsapi.org/v2/everything?domains=screenrant.com,movieweb.com,empireonline.com,collider.com,cbr.com,digitalspy.com,comingsoon.net&from=2021-09-01&to=2021-10-30&sortBy=popularity&pageSize=100&apiKey=ab833e5b7de944ce9d01294060cf9eee'
       const vm = this
       this.axios.get(NEWS_API).then((response) => {
         // console.log(response.data.articles)
@@ -43,7 +43,7 @@ export default {
     getSearchNews () {
       const searchInput = document.querySelector('.search-input')
       const searchWord = searchInput.value.trim()
-      const NEWSSEARCH_API = `https://newsapi.org/v2/everything?domains=screenrant.com,movieweb.com,empireonline.com,collider.com,cbr.com,digitalspy.com,comingsoon.net&q=${searchWord}&from=2021-08-20&to=2021-10-10&sortBy=popularity&pageSize=100&apiKey=ab833e5b7de944ce9d01294060cf9eee`
+      const NEWSSEARCH_API = `https://newsapi.org/v2/everything?domains=screenrant.com,movieweb.com,empireonline.com,collider.com,cbr.com,digitalspy.com,comingsoon.net&q=${searchWord}&from=2021-09-01&to=2021-10-30&sortBy=popularity&pageSize=100&apiKey=ab833e5b7de944ce9d01294060cf9eee`
       this.axios.get(NEWSSEARCH_API).then((res) => {
         // console.log(res.data)
         const searchNews = []
