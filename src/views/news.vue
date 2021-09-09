@@ -32,22 +32,22 @@ export default {
   },
   methods: {
     getNews () {
-      const NEWS_API = 'https://newsapi.org/v2/everything?domains=screenrant.com,movieweb.com,empireonline.com,collider.com,cbr.com,digitalspy.com,comingsoon.net&from=2021-09-01&to=2021-10-30&sortBy=popularity&pageSize=100&apiKey=ab833e5b7de944ce9d01294060cf9eee'
+      const NEWS_API = 'https://sleepy-waters-79700.herokuapp.com/NEWS'
       const vm = this
       this.axios.get(NEWS_API).then((response) => {
         // console.log(response.data.articles)
-        vm.allNews.push(...response.data.articles)
+        vm.allNews.push(...response.data)
         // console.log(this.allNews)
       })
     },
     getSearchNews () {
       const searchInput = document.querySelector('.search-input')
       const searchWord = searchInput.value.trim()
-      const NEWSSEARCH_API = `https://newsapi.org/v2/everything?domains=screenrant.com,movieweb.com,empireonline.com,collider.com,cbr.com,digitalspy.com,comingsoon.net&q=${searchWord}&from=2021-09-01&to=2021-10-30&sortBy=popularity&pageSize=100&apiKey=ab833e5b7de944ce9d01294060cf9eee`
+      const NEWSSEARCH_API = `https://sleepy-waters-79700.herokuapp.com/NEWS?q=${searchWord}`
       this.axios.get(NEWSSEARCH_API).then((res) => {
         // console.log(res.data)
         const searchNews = []
-        searchNews.push(...res.data.articles)
+        searchNews.push(...res.data)
         let searchHTML = ''
         searchNews.forEach(data => {
           searchHTML += `<div class="news-wrapper">
