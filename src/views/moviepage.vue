@@ -4,7 +4,7 @@
        <!-- :style="{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${this.thisMovie.poster_path})`}" -->
       <div class="movie-name">
         <div class="movie-title">{{ thisMovie.title }}<span class="heart" @click="addHeart"><i class="fab fa-gratipay"></i></span></div>
-        <div class="movie-info">{{ thisMovie.release_date }} ｜ {{thisMovie.production_countries[0].name}} ｜ {{ thisMovie.runtime }} mins ｜ <i class="fas fa-star"></i> {{ thisMovie.vote_average}}</div>
+        <div class="movie-info">{{ thisMovie.release_date }} ｜ {{ thisMovie.runtime }} mins ｜ <i class="fas fa-star"></i> {{ thisMovie.vote_average}}</div>
         <div class="movie-genres" v-for="item in thisMovie.genres" :key="item.id">{{ item.name }}</div>
       </div>
       <div class="movie-wrapper">
@@ -24,9 +24,7 @@
             <FsLightbox
             :toggler="toggler"
             :sources="[
-              `https://www.youtube.com/watch?v=${this.videoYT[0].key}`,
-              `https://www.youtube.com/watch?v=${this.videoYT[1].key}`,
-              `https://www.youtube.com/watch?v=${this.videoYT[2].key}`
+              `https://www.youtube.com/watch?v=${this.videoYT[0].key}`
             ]"
             />
           </div>
@@ -69,10 +67,9 @@ export default {
     getMovieInfo () {
       console.log(this.$route.params.id)
       const movieID = this.$route.params.id
-      const vm = this
       const MOVIE_API = `https://api.themoviedb.org/3/movie/${movieID}?api_key=540c13e42b8f4dd5690d1ed0982c83c2`
       this.axios.get(MOVIE_API).then((res) => {
-        vm.thisMovie = res.data
+        this.thisMovie = res.data
         // console.log(vm.thisMovie)
         this.getPeople()
         this.getVideo()
@@ -85,16 +82,15 @@ export default {
     getPeople () {
       const movieID = this.$route.params.id
       const PEOPLE_API = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=540c13e42b8f4dd5690d1ed0982c83c2`
-      const vm = this
       this.axios.get(PEOPLE_API).then((res) => {
         const castPeople = res.data.cast
-        vm.cast = castPeople.filter(function (item) {
+        this.cast = castPeople.filter(function (item) {
           if (item.order < 7) {
             return item
           }
         })
         const crewPeople = res.data.crew
-        vm.director = crewPeople.find(function (item, index, array) {
+        this.director = crewPeople.find(function (item, index, array) {
           return item.job === 'Director'
         })
         // console.log(vm.cast)
@@ -103,10 +99,9 @@ export default {
     getVideo () {
       const movieID = this.$route.params.id
       const VIDEO_API = `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=540c13e42b8f4dd5690d1ed0982c83c2`
-      const vm = this
       this.axios.get(VIDEO_API).then((res) => {
         const videoData = res.data.results
-        vm.videoYT = videoData.filter(function (item) {
+        this.videoYT = videoData.filter(function (item) {
           return item.site === 'YouTube'
         })
       })
@@ -133,9 +128,6 @@ export default {
         }
       }
       list.push(this.thisMovie)
-      // console.log(list)
-      // console.log(jsonString)
-      // console.log(typeof jsonString)
       localStorage.setItem('heartMovie', JSON.stringify(list)) // 將list轉成字串存入
     }
   },
