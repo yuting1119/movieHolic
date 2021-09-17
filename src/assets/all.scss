@@ -513,6 +513,7 @@ input, select{
     .list-wrapper{
       background-color: white;
       border-radius: 30px;
+      border: solid 2px darken($color_brown, 20%);
       box-shadow: 2px 2px 5px $color_gray;
       margin-top: 50px;
       padding: 20px 20px 20px 20px;
@@ -526,24 +527,48 @@ input, select{
       }
       .list-wrapper-right{
         // border: teal 1px solid;
-        display: flex;
         .list-overview{
           text-align: left;
         }
         .list-del{
           position: absolute;
-          right: -5px;
-          top: -10px;
-          border: 5px solid $color_brown;
-          padding: 5px 10px;
+          right: 33px;
+          top: -20px;
+          padding: 10px 15px;
           background-color: $color_brown;
           border-radius: 50%;
-          box-shadow: 2px 2px $color_gray;
+          border: solid 2px darken($color_brown, 20%);
           cursor: pointer;
           & :hover{
             transform: translate(1px, 1px);
           }
         }
+        .list-write{
+          position: absolute;
+          right: -15px;
+          top: -20px;
+          padding: 10px 15px;
+          background-color: $color_brown;
+          border-radius: 50%;
+          border: solid 2px darken($color_brown, 20%);
+          cursor: pointer;
+          & :hover{
+            transform: translate(1px, 1px);
+          }
+        }
+      }
+      .list-edit{
+        margin-top: 20px;
+        .list-ok{
+          font-size: 30px;
+        }
+        .list-text{
+          width: 100%;
+          min-height: 100px;
+        }
+      }
+      .list-thought{
+
       }
     }
   }
