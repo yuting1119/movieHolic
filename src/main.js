@@ -5,15 +5,10 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
-import VueLazyload from 'vue-lazyload'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
-Vue.use(VueLazyload)
-Vue.use(VueLazyload, {
-  preLoad: 1.3,
-  loading: 'dist/loading.gif',
-  attempt: 1,
-  lazyComponent: true
-})
+Vue.use('Loading', Loading)
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 // axios.defaults.withCredentials = true

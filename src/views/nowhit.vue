@@ -1,5 +1,6 @@
 <template>
   <div id="nowhit">
+    <loading :active.sync="isLoading"></loading>
     <VueSlickCarousel class="slick-wrapper" v-bind="settings">
       <div class="slick-content slick-bg" :style="{backgroundImage: `url(https://image.tmdb.org/t/p/original/${this.movieOne.backdrop_path})`}">
         <div class="slick-title">{{ movieOne.title }}</div>
@@ -40,7 +41,8 @@ export default {
         autoplay: true,
         autoplaySpeed: 5000,
         dots: false,
-        fade: true
+        fade: true,
+        isLoading: false
       },
       movieOne: [],
       movieTwo: [],
@@ -54,9 +56,11 @@ export default {
   methods: {
     getHitMovie () {
       const vm = this
+      vm.isLoading = true
       this.axios.get('https://api.themoviedb.org/3/movie/436969?api_key=540c13e42b8f4dd5690d1ed0982c83c2')
         .then((res) => {
           // console.log(res.data)
+          vm.isLoading = false
           vm.movieOne = res.data
           // console.log(this.movieOne)
         })
