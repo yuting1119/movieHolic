@@ -1,5 +1,6 @@
 <template>
   <div id="news">
+    <loading :active.sync="isLoading"></loading>
     <h1>entertainment news</h1>
     <div class="search-container">
       <input type="text" class="search-input" placeholder="search news" @keyup.enter="getSearchNews">
@@ -24,7 +25,8 @@
 export default {
   data () {
     return {
-      allNews: []
+      allNews: [],
+      isLoading: false
     }
   },
   mounted () {
@@ -34,8 +36,10 @@ export default {
     getNews () {
       const NEWS_API = 'https://sleepy-waters-79700.herokuapp.com/NEWS'
       const vm = this
+      vm.isLoading = true
       this.axios.get(NEWS_API).then((response) => {
         // console.log(response.data.articles)
+        vm.isLoading = false
         vm.allNews.push(...response.data)
         // console.log(this.allNews)
       })
