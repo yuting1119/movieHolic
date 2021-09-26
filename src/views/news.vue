@@ -9,8 +9,9 @@
     <div class="news-container">
       <div class="news-wrapper" v-for="item in allNews" :key="item.author">
         <div class="social-container">
-          <a :href="'https://www.facebook.com/sharer.php?u＝'+'item.url'" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a :href="`https://www.facebook.com/sharer.php?u＝${item.url}`" target="_blank"><i class="fab fa-facebook"></i></a>
           <a :href="`http://line.naver.jp/R/msg/text/?${item.url}`" target="_blank"><i class="fab fa-line"></i></a>
+          <a :href="`https://twitter.com/share?text=文字&url=${item.url}`" target="_blank"><i class="fab fa-twitter"></i></a>
         </div>
         <a class="news-link" :href="item.url">
           <div class="news-card">

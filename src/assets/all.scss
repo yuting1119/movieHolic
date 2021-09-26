@@ -400,6 +400,13 @@ input, select{
               transition-duration: 0.7s;
             }
           }
+          .fa-twitter{
+            color: #1da1f2;
+            &:hover{
+              color: darken(#1da1f2, 20%);
+              transition-duration: 0.7s;
+            }
+          }
         }
       }
       .news-link{
