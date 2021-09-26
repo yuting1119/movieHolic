@@ -8,7 +8,7 @@
     <div class="list-container">
       <div class="list-wrapper" v-for="(item, key) in heartList" :key="item.id">
         <div class="list-wrapper-left">
-          <div class="list-title">{{ item.title }}</div>
+          <div class="list-title">{{ item.title }}<span class="list-rate"><i class="fas fa-star"></i> {{ item.vote_average }}</span></div>
         </div>
         <div class="list-wrapper-right">
           <div class="list-overview">{{ item.overview }}</div>
@@ -21,6 +21,8 @@
         </div>
         <div class="list-thought" v-for="items in thoughtList" :key="items.id">
           <div v-if="items.id === item.id">
+            <hr>
+            <span>I think the movie...</span>
             {{ items.content }}
           </div>
         </div>

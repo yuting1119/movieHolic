@@ -4,7 +4,7 @@
        <!-- :style="{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${this.thisMovie.poster_path})`}" -->
       <div class="movie-name">
         <div class="movie-title">{{ thisMovie.title }}<span class="heart" @click="addHeart"><i class="fab fa-gratipay"></i></span></div>
-        <div class="movie-info">{{ thisMovie.release_date }} ｜ {{ thisMovie.runtime }} mins ｜ <i class="fas fa-star"></i> {{ thisMovie.vote_average}}</div>
+        <div class="movie-info">{{ thisMovie.release_date }} ｜ {{ thisMovie.runtime }} mins ｜ <i class="fas fa-star"></i> {{ thisMovie.vote_average }}</div>
         <div class="movie-genres" v-for="item in thisMovie.genres" :key="item.id">{{ item.name }}</div>
       </div>
       <div class="movie-wrapper">
@@ -12,13 +12,6 @@
           <img :src="posterImg(thisMovie)" alt="">
         </div>
         <div class="movie-content">
-          <span>DIRECTOR：</span>
-          <div class="movie-director">{{ director.name }}</div>
-          <span>CAST：</span><br>
-          <div class="cast-container" v-for="item in cast" :key="item.order">
-            <div class="movie-cast">{{ item.name }}</div>
-          </div>
-          <div class="movie-overview">{{ thisMovie.overview }}</div>
           <div class="movie-photo">
             <button @click="toggler = !toggler">trailers</button>
             <FsLightbox
@@ -28,6 +21,13 @@
             ]"
             />
           </div>
+          <span>DIRECTOR：</span>
+          <div class="movie-director">{{ director.name }}</div>
+          <span>CAST：</span><br>
+          <div class="cast-container" v-for="item in cast" :key="item.order">
+            <div class="movie-cast">{{ item.name }}</div>
+          </div>
+          <div class="movie-overview">{{ thisMovie.overview }}</div>
         </div>
       </div>
       <div class="similar-container">

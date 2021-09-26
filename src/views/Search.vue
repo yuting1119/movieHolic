@@ -1,5 +1,6 @@
 <template>
   <div id="search">
+    <loading :active.sync="isLoading"></loading>
     <h1>results for：  {{ keywords }} </h1>
     <div class="search-container">
       <div class="search-wrapper" v-for="item in searchedMovie" :key="item.id">
@@ -21,7 +22,8 @@ export default {
   props: ['keywords'],
   data () {
     return {
-      searchedMovie: []
+      searchedMovie: [],
+      isLoading: false
     }
   },
   created () {
@@ -32,8 +34,10 @@ export default {
       // console.log(this.keywords)
       const keyWord = this.$route.params.keywords
       const vm = this
+      vm.isLoading = true
       const SEARCH_API = `https://api.themoviedb.org/3/search/movie?query=${keyWord}&api_key=540c13e42b8f4dd5690d1ed0982c83c2`
       this.axios.get(SEARCH_API).then((res) => {
+        vm.isLoading = false
         vm.searchedMovie = res.data.results
         console.log(vm.searchedMovie)
       })

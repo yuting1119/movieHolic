@@ -1,9 +1,10 @@
 <template>
-  <div id="random">
+  <div id="random" :style="{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${this.chosenMovie.backdrop_path})`}">
+    <loading :active.sync="isLoading"></loading>
     <h1>find movies</h1>
     <div class="random-select">
       <select id="genres" @click="findTheMovie">
-        <option >pick me today's movie!</option>
+        <option >pick today's movie!</option>
         <option value="28">Action</option>
         <option value="12">Adventure</option>
         <option value="16">Animation</option>
@@ -27,16 +28,15 @@
     <div class="random-first" v-if="this.chosenMovie.length == 0">
       <img class="first-pic" src="@/assets/undraw_searching_p5ux.svg" alt="">
     </div>
-    <router-link :to="{ name: 'Movie', params: { id: `${this.chosenMovie.id}` }}">
+    <router-link :to="{ name: 'Movie', params: { id: `${this.chosenMovie.id}` }}" v-if="chosenMovie != ''">
       <div class="ans-container">
+        <div class="ans-title">{{ chosenMovie.title }}</div>
+        <div class="ans-release">{{ chosenMovie.release_date }}</div>
+        <div class="ans-rate"><i class="fas fa-star"></i>{{ chosenMovie.vote_average }}</div>
         <div class="ans-poster">
           <img :src="getPoster(this.chosenMovie)" alt="">
         </div>
-        <div class="ans-content">
-          <div class="ans-title">{{ chosenMovie.title }}<span class="ans-rate"></span></div>
-          <div class="ans-release">{{ chosenMovie.release_date }}</div>
-          <div class="ans-overview">{{ chosenMovie.overview}}</div>
-        </div>
+        <div class="ans-overview">{{ chosenMovie.overview}}</div>
       </div>
     </router-link>
   </div>
@@ -48,7 +48,8 @@ export default {
   data () {
     return {
       chosenMovie: [],
-      videoYT: []
+      videoYT: [],
+      isLoading: false
     }
   },
   created () {
@@ -60,6 +61,7 @@ export default {
       const genresAns = genresSelect.value
       const randomPage = Math.floor(Math.random() * 10)
       // console.log(genresAns)
+      this.isLoading = true
       const GENRES_API = `https://api.themoviedb.org/3/discover/movie?api_key=540c13e42b8f4dd5690d1ed0982c83c2&with_genres=${genresAns}&sort_by=popularity.desc&page=${randomPage}`
       this.axios.get(GENRES_API).then((res) => {
         // console.log(res.data.results)

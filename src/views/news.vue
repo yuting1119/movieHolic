@@ -3,11 +3,15 @@
     <loading :active.sync="isLoading"></loading>
     <h1>entertainment news</h1>
     <div class="search-container">
-      <input type="text" class="search-input" placeholder="search news" @keyup.enter="getSearchNews">
+      <input type="text" class="search-input" placeholder="  search news" @keyup.enter="getSearchNews">
       <input type="button" value="submit" class="search-btn" @click="getSearchNews">
     </div>
     <div class="news-container">
       <div class="news-wrapper" v-for="item in allNews" :key="item.author">
+        <div class="social-container">
+          <a :href="'https://www.facebook.com/sharer.php?u＝'+'item.url'" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a :href="`http://line.naver.jp/R/msg/text/?${item.url}`" target="_blank"><i class="fab fa-line"></i></a>
+        </div>
         <a class="news-link" :href="item.url">
           <div class="news-card">
             <h6 class="news-title">{{ item.title }}</h6>
@@ -18,6 +22,7 @@
         </a>
       </div>
     </div>
+    <div class="up" @click="goTop"><i class="fas fa-angle-double-up"></i></div>
   </div>
 </template>
 
@@ -54,7 +59,12 @@ export default {
         searchNews.push(...res.data)
         let searchHTML = ''
         searchNews.forEach(data => {
-          searchHTML += `<div class="news-wrapper">
+          searchHTML += `
+          <div class="news-wrapper">
+        <div class="social-container">
+          <a href="https://www.facebook.com/sharer.php?u＝${data.url}" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="http://line.naver.jp/R/msg/text/?${data.url}" target="_blank"><i class="fab fa-line"></i></a>
+        </div>
         <a class="news-link" href="${data.url}">
           <div class="news-card">
             <h6 class="news-title">${data.title}</h6>
@@ -68,6 +78,9 @@ export default {
           newsContainer.innerHTML = searchHTML
         })
       })
+    },
+    goTop () {
+      document.documentElement.scrollTop = 0
     }
   }
 }

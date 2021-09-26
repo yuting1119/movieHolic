@@ -7,6 +7,10 @@ import moviePage from '../views/moviepage.vue'
 import List from '../views/list.vue'
 import nowHit from '../views/nowhit.vue'
 import Search from '../views/search.vue'
+import Recent from '../views/recent.vue'
+import Classic from '../views/classic.vue'
+import TVshow from '../views/tvshow.vue'
+import TVshowPage from '../views/tvshowpage.vue'
 
 Vue.use(VueRouter)
 
@@ -19,7 +23,24 @@ const routes = [
   {
     path: '/top',
     name: 'Top',
-    component: Top
+    component: Top,
+    children: [
+      {
+        path: 'classic',
+        name: 'classic',
+        component: Classic
+      },
+      {
+        path: '',
+        name: 'recent',
+        component: Recent
+      },
+      {
+        path: 'tvshow',
+        name: 'tvshow',
+        component: TVshow
+      }
+    ]
   },
   {
     path: '/random',
@@ -35,6 +56,12 @@ const routes = [
     path: '/moviepage/:id',
     name: 'Movie',
     component: moviePage,
+    props: true
+  },
+  {
+    path: '/tvshowpage/:id',
+    name: 'TVshow',
+    component: TVshowPage,
     props: true
   },
   {
