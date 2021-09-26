@@ -22,7 +22,7 @@
         <div class="list-thought" v-for="items in thoughtList" :key="items.id">
           <div v-if="items.id === item.id">
             <hr>
-            <span>I think the movie...</span>
+            <span>I think the movie was...</span><br>
             {{ items.content }}
           </div>
         </div>

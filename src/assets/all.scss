@@ -293,7 +293,7 @@ input, select{
     margin: auto;
     width: 60%;
     color: $color_dark;
-    background-color: rgba(245, 245, 245, 0.568);
+    background-color: rgba(245, 245, 245, 0.3);
     border-radius: 5%;
     @include phone{
       width: 80%;
@@ -772,6 +772,8 @@ input, select{
         border-top: $color_brown;
         span{
           font-size: 25px;
+          text-align: left;
+          margin-bottom: 10px;
         }
       }
     }
