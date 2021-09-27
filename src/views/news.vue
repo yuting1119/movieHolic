@@ -1,7 +1,11 @@
 <template>
   <div id="news">
-    <loading :active.sync="isLoading"></loading>
     <h1>entertainment news</h1>
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-ball-tkyje7zclk"><div class="ldio-sr0mn239xt9">
+      <div></div>
+      </div></div>
+    </loading>
     <div class="search-container">
       <input type="text" class="search-input" placeholder="  search news" @keyup.enter="getSearchNews">
       <input type="button" value="submit" class="search-btn" @click="getSearchNews">
@@ -28,7 +32,11 @@
 </template>
 
 <script>
+import loading from 'vue-loading-overlay'
 export default {
+  components: {
+    loading
+  },
   data () {
     return {
       allNews: [],
@@ -86,3 +94,48 @@ export default {
   }
 }
 </script>
+
+<style type="text/css" scope>
+@keyframes ldio-sr0mn239xt9 {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.45,0,0.9,0.55)
+  }
+  0% {
+    transform: translate(0,0)
+  }
+  50% {
+    transform: translate(0,54px);
+    animation-timing-function: cubic-bezier(0,0.45,0.55,0.9);
+  }
+  100% {
+    transform: translate(0,0);
+  }
+}
+
+.ldio-sr0mn239xt9 div {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #85a2b6;
+  left: 37px;
+  top: 10px;
+  animation: ldio-sr0mn239xt9 0.6666666666666666s linear infinite;
+}
+.loadingio-spinner-ball-tkyje7zclk {
+  width: 41px;
+  height: 41px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+.ldio-sr0mn239xt9 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(0.41);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-sr0mn239xt9 div { box-sizing: content-box; }
+</style>
