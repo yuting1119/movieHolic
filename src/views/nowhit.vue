@@ -1,6 +1,10 @@
 <template>
   <div id="nowhit">
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-ball-tkyje7zclk"><div class="ldio-sr0mn239xt9">
+      <div></div>
+      </div></div>
+    </loading>
     <VueSlickCarousel class="slick-wrapper" v-bind="settings">
       <div class="slick-content slick-bg" :style="{backgroundImage: `url(https://image.tmdb.org/t/p/original/${this.movieOne.backdrop_path})`}">
         <div class="slick-title">{{ movieOne.title }}</div>

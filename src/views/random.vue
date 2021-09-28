@@ -75,7 +75,7 @@ export default {
         this.isLoading = false
         const genresMovie = res.data.results
         this.chosenMovie = genresMovie.find(function (item, index) {
-          return index === Math.floor(Math.random() * 5)
+          return index === Math.floor(Math.random() * 7)
         })
         // console.log(this.chosenMovie)
       })
